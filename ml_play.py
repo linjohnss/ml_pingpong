@@ -11,7 +11,7 @@ def ml_loop(side: str):
     # 1. Put the initialization code here
     ball_served = False
     filename1 = path.join(path.dirname(__file__), 'save', 'NORMAL_model.pickle')
-    filename2 = path.join(path.dirname(__file__), 'save', 'helf_model.pickle')
+    filename2 = path.join(path.dirname(__file__), 'save', 'half_model.pickle')
     filename3 = path.join(path.dirname(__file__), 'save', 'IL_model.pickle')
     filename4 = path.join(path.dirname(__file__), 'save','IR_model.pickle')
 
