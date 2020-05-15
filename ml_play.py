@@ -66,7 +66,7 @@ def ml_loop(side: str):
             if scene_info["ball_speed"][1] / ball_spe_change_y < 0 and scene_info["ball"][1] == 260 \
                     and scene_info["blocker"][0] + 30 >= scene_info["ball"][0] >= scene_info["blocker"][0] - 5:
                 type = 1
-            elif abs(scene_info["ball_speed"][0]) > scene_info["ball_speed"][1] > 0:
+            elif abs(scene_info["ball_speed"][0]) > scene_info["ball_speed"][1] > 0 or (scene_info["ball_speed"][0]/ball_spe_change_x <0 and scene_info["ball"][1]==80):
                 type = 3
             elif scene_info["ball_speed"][1] / ball_spe_change_y < 0 and scene_info["ball"][1] == 415:
                 type = 0
