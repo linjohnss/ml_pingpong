@@ -12,7 +12,9 @@ def ml_loop(side: str):
     ball_served = False
     filename1 = path.join(path.dirname(__file__), 'save', 'NORMAL_model.pickle')
     filename2 = path.join(path.dirname(__file__), 'save', 'helf_model.pickle')
-    filename3 = path.join(path.dirname(__file__), 'save', 'I_model.pickle')
+    filename3 = path.join(path.dirname(__file__), 'save', 'IL_model.pickle')
+    filename4 = path.join(path.dirname(__file__), 'save','IR_model.pickle')
+
     #filename4 = path.join(path.dirname(__file__), 'save', 'QQ_model.pickle')
     with open(filename1, 'rb') as file:
         clf1 = pickle.load(file)
@@ -20,8 +22,9 @@ def ml_loop(side: str):
         clf2 = pickle.load(file)
     with open(filename3, 'rb') as file:
         clf3 = pickle.load(file)
-    #with open(filename4, 'rb') as file:
-     #   clf4 = pickle.load(file)
+    with open(filename4, 'rb') as file:
+        clf4 = pickle.load(file)
+
     global ball_spe_change
     global type
 
@@ -66,8 +69,10 @@ def ml_loop(side: str):
             if scene_info["ball_speed"][1] / ball_spe_change_y < 0 and scene_info["ball"][1] == 260 \
                     and scene_info["blocker"][0] + 30 >= scene_info["ball"][0] >= scene_info["blocker"][0] - 5:
                 type = 1
-            elif abs(scene_info["ball_speed"][0]) > scene_info["ball_speed"][1] > 0 or (scene_info["ball_speed"][0]/ball_spe_change_x <0 and scene_info["ball"][1]==80):
-                type = 3
+            elif abs(scene_info["ball_speed"][0]) > scene_info["ball_speed"][1] > 0:
+                type = 2
+            elif scene_info["ball_speed"][0]/ball_spe_change_x <0 and scene_info["ball"][1]==80:
+                type=3
             elif scene_info["ball_speed"][1] / ball_spe_change_y < 0 and scene_info["ball"][1] == 415:
                 type = 0
 
@@ -101,10 +106,12 @@ def ml_loop(side: str):
                 print(1)
                 y = clf2.predict(feature1)
 
-            elif type == 3:
+            elif type ==2:
                 y = clf3.predict(feature2)
+                print(2)
+            elif type == 3:
+                y = clf4.predict(feature2)
                 print(3)
-
             else:
                 print(4)
                 y = clf1.predict(feature2)
