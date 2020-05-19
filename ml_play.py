@@ -28,6 +28,8 @@ def ml_loop(side: str):
     global ball_spe_change
     global type
 
+
+
     def get_direction(speed_x, speed_y):
         if (speed_x >= 0 and speed_y >= 0):
             return 0
